@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  test:
+    image: imega/busted
+    environment:
+      LUA_PATH: /app/?.lua
+    command: busted /app
+    volumes:
+      - ./lib:/app/lib
+
+  app:
+    image: nickblah/lua:5.4-alpine
+    environment:
+      LUA_PATH: /app/?.lua
+    command: lua /app/main.lua /app/data/input.txt
+    volumes:
+      - ./:/app

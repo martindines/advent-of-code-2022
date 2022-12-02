@@ -15,7 +15,13 @@ local function getLinesFromFile(file)
     return lines
 end
 
-local file = arg[1]
+local part = arg[1]
+local file = arg[2]
+
+if part == nil or part == '' then
+    print("ERROR: A part argument is required")
+    return
+end
 
 if file == nil or file == '' then
     print("ERROR: A file is required")
@@ -28,7 +34,17 @@ if lines == nil or #lines < 1 then
     return
 end
 
-local highestTotal = calc.getHighestTotalFromLines(lines)
+if part == 'part1' then
+    local highestTotal = calc.getHighestTotalFromLines(lines)
 
-print(highestTotal)
+    print(highestTotal)
+    return
+end
+
+if part == 'part2' then
+    local sumOfLargestThreeHighestTotals = calc.getSumOfLargestThreeHighestTotalsFromLines(lines)
+
+    print(sumOfLargestThreeHighestTotals)
+    return
+end
 
